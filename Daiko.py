@@ -5,18 +5,13 @@ import sys
 import os
 import json
 from pathlib import Path
+import bcrypt  # ✅ これだけ
 
-# ========== ✅ 環境変数からトークン読み込み ==========
+# 環境変数からトークン読み込み
 TOKEN = os.getenv("BOT_TOKEN")
-
 if not TOKEN:
     print("⚠️ 環境変数 BOT_TOKEN が設定されていません！FadeHost管理画面から設定してください。")
     sys.exit(1)
-# ==================================================
-
-# 以降、既存のコードをそのまま続ける
-# ...
-# bot.run(TOKEN)  ← 起動時はこのように TOKEN を使用
 
 BCSFE_PATH = os.path.join(os.path.dirname(__file__), 'BCSFE-Python-main', 'src')
 sys.path.insert(0, BCSFE_PATH)
