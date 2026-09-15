@@ -7,15 +7,21 @@ import json
 from pathlib import Path
 
 # ========== ✅ BCSFE-Python を正しく読み込む設定 ==========
-BCSFE_PATH = os.path.join(os.path.dirname(__file__), 'BCSFE-Python-main', 'src')
-sys.path.insert(0, BCSFE_PATH)
+# 実行ファイルと同じ場所にある BCSFE-Python-main/src を指定
+BASE_DIR = Path(__file__).parent
+BCSFE_PATH = BASE_DIR / "BCSFE-Python-main" / "src"
+
+# 検索パスに追加
+sys.path.insert(0, str(BCSFE_PATH))
+
+# ✅ ここからインポート（重複を削除）
 from bcsfe import core
 # =========================================================
 
-BCRPT_PATH = os.path.join(os.path.dirname(__file__), 'BCSFE-Python-main', 'src')
-sys.path.insert(0,BCSFE_PATH)
+# 🔐 トークンは環境変数から取得（FadeHost推奨）
+TOKEN = os.getenv("DISCORD_TOKEN")
 
-from bcsfe import core
+# --- 以降のBotコードをここに記述 ---
 
 ALLOWED_USERS = [1465368277663350794]
 PANELS_FILE = Path(__file__).parent / "panels.json"
@@ -3103,5 +3109,3 @@ class AccountSaveView(discord.ui.View):
         self.required_role = required_role
         self.add_item(AccountSaveButton())
         self.add_item(MyAccountButton())
-        
-TOKEN = os.getenv("DISCORD_TOKEN")
