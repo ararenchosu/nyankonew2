@@ -3,23 +3,22 @@ from discord.ext import commands
 from discord import app_commands
 import os
 import json
-from pathlib import Path   # ← ★この1行を追加！
+from pathlib import Path   # ✅ これでOK
 
-from bcsfe import core
+from bcsfe import core     # ✅ これだけ
 
-# 🔐 環境変数からトークン取得
 TOKEN = os.getenv("DISCORD_TOKEN")
 
-# ここ以降のコードはそのままでOK
-PANELS_FILE = Path(__file__).parent / "panels.json"  # ← こ⾏が動くようになる
-
-ALLOWED_USERS = [1465368277663350794]
+# ✅ 下記2行の __file__ を2本アンダースコアに修正
 PANELS_FILE = Path(__file__).parent / "panels.json"
 
-TEMPLATE_TC          = "7fd88e6af"
-TEMPLATE_CC          = "1430"
+ALLOWED_USERS = [1465368277663350794]
+PANELS_FILE = Path(__file__).parent / "panels.json"  # ✅ こちらも修正
+
+TEMPLATE_TC        = "7fd88e6af"
+TEMPLATE_CC        = "1430"
 TEMPLATE_BACKUP_PATH = "template_save.bin"
-TEMPLATE_CODES_FILE  = "template_codes.json"
+TEMPLATE_CODES_FILE = "template_codes.json"
 
 def load_panels():
     if PANELS_FILE.exists():
