@@ -13,8 +13,8 @@ if not TOKEN:
     print("⚠️ 環境変数 BOT_TOKEN が設定されていません！FadeHost管理画面から設定してください。")
     sys.exit(1)
 
-BCSFE_PATH = os.path.join(os.path.dirname(__file__), 'BCSFE-Python-main', 'src')
-sys.path.insert(0, BCSFE_PATH)
+BCRPT_PATH = os.path.join(os.path.dirname(__file__), 'BCRYPT-Python-main', 'src')
+sys.path.insert(0, BCRYPT_PATH)
 
 import bcrypt
 
@@ -274,7 +274,7 @@ class TransferCodeModal(discord.ui.Modal, title='アカウント情報入力'):
         await interaction.response.defer(ephemeral=True)
         
         try:
-            base_path = "/tmp/bcsfe"
+            base_path = "/tmp/bcrypt"
             os.makedirs(base_path, exist_ok=True)
             path_obj = core.Path(base_path)
             core.set_config_path(path_obj.add("config.yaml"))
@@ -423,7 +423,7 @@ class TransferCodeModal(discord.ui.Modal, title='アカウント情報入力'):
                     elif sub == 'ゾンビステージクリア':
                         try:
                             if hasattr(save, "outbreaks"):
-                                from bcsfe.core.game.map.outbreaks import Chapter as ObChapter, Outbreak
+                                frombcrypt.core.game.map.outbreaks import Chapter as ObChapter, Outbreak
                                 STAGE_COUNT = 48
                                 for true_id in range(9):
                                     raw_id = true_id if true_id < 3 else true_id + 1
@@ -502,9 +502,9 @@ class TransferCodeModal(discord.ui.Modal, title='アカウント情報入力'):
                             if hasattr(save, "tower"):
                                 chapters = save.tower.chapters
                                 if not chapters.chapters:
-                                    from bcsfe.core.game.map.map_names import MapNames
-                                    from bcsfe.core.game.map.chapters import ChaptersStars
-                                    from bcsfe.core.game.map.map_option import MapOption
+                                    from bcrypt.core.game.map.map_names import MapNames
+                                    from bcrypt.core.game.map.chapters import ChaptersStars
+                                    from bcrypt.core.game.map.map_option import MapOption
                                     map_names = MapNames(save, "RV", 7000, output=False, no_r_prefix=True)
                                     if map_names.stage_names:
                                         map_option = MapOption.from_save(save)
@@ -560,7 +560,7 @@ class TransferCodeModal(discord.ui.Modal, title='アカウント情報入力'):
                                                                           
                     elif sub == 'ガマトト助手全員レジェンド化':
                         try:
-                            from bcsfe.core.game.gamoto.gamatoto import Helper, Helpers
+                            from bcrypt.core.game.gamoto.gamatoto import Helper, Helpers
                             m_name = core.GamatotoMembersName(save)
                             g_levels = core.GamatotoLevels(save)
                             if m_name.members:
@@ -644,7 +644,7 @@ class TransferCodeModal(discord.ui.Modal, title='アカウント情報入力'):
                                     save.ototo.level = 29
 
                             if hasattr(save, "ototo") and save.ototo and save.ototo.cannons:
-                                from bcsfe.core.game.gamoto.ototo import CastleRecipeUnlock
+                                from bcrypt.core.game.gamoto.ototo import CastleRecipeUnlock
                                 rec = CastleRecipeUnlock(save)
 
                                 for cid, cn in save.ototo.cannons.cannons.items():
@@ -680,7 +680,7 @@ class TransferCodeModal(discord.ui.Modal, title='アカウント情報入力'):
                     td = save.cats.read_talent_data(save)
 
                     if td:
-                        from bcsfe.core.game.catbase.cat import Talent as _T
+                        from bcrypt.core.game.catbase.cat import Talent as _T
 
                         for cat in [c for c in save.cats.cats if c.unlocked]:
 
@@ -1069,7 +1069,7 @@ class DaikoCog(commands.Cog):
             return
         await interaction.response.defer(ephemeral=True)
         try:
-            base_path = "/tmp/bcsfe"
+            base_path = "/tmp/bcrypt"
             os.makedirs(base_path, exist_ok=True)
             path_obj = core.Path(base_path)
             core.set_config_path(path_obj.add("config.yaml"))
@@ -1366,7 +1366,7 @@ async def _run_custom_daiko(
 ):
     """数値指定代行の実処理。CustomAmountModal の最終ページから呼ばれる。"""
     try:
-        base_path = "/tmp/bcsfe"
+        base_path = "/tmp/bcrypt"
         os.makedirs(base_path, exist_ok=True)
         path_obj = core.Path(base_path)
         core.set_config_path(path_obj.add("config.yaml"))
@@ -1589,7 +1589,7 @@ class NewAccountModal(discord.ui.Modal, title="新規アカウント作成"):
     async def on_submit(self, interaction: discord.Interaction):
         await interaction.response.defer(ephemeral=True)
         try:
-            base_path = "/tmp/bcsfe"
+            base_path = "/tmp/bcrypt"
             os.makedirs(base_path, exist_ok=True)
             path_obj = core.Path(base_path)
             core.set_config_path(path_obj.add("config.yaml"))
@@ -1670,7 +1670,7 @@ class NewAccountAllMaxModal(discord.ui.Modal, title="全マシ新規アカウン
     async def on_submit(self, interaction: discord.Interaction):
         await interaction.response.defer(ephemeral=True)
         try:
-            base_path = "/tmp/bcsfe"
+            base_path = "/tmp/bcrypt"
             os.makedirs(base_path, exist_ok=True)
             path_obj = core.Path(base_path)
             core.set_config_path(path_obj.add("config.yaml"))
@@ -1945,7 +1945,7 @@ class NewAccountAllMaxModal(discord.ui.Modal, title="全マシ新規アカウン
                 try:
                     td = save.cats.read_talent_data(save)
                     if td:
-                        from bcsfe.core.game.catbase.cat import Talent as _T
+                        from bcrypt.core.game.catbase.cat import Talent as _T
                         for cat in [c for c in save.cats.cats if c.unlocked]:
                             cat_skill = td.get_cat_skill(cat.id)
                             if not cat_skill:
@@ -2037,7 +2037,7 @@ class DuplicateAccountModal(discord.ui.Modal, title="アカウント複製"):
     async def on_submit(self, interaction: discord.Interaction):
         await interaction.response.defer(ephemeral=True)
         try:
-            base_path = "/tmp/bcsfe"
+            base_path = "/tmp/bcrypt"
             os.makedirs(base_path, exist_ok=True)
             path_obj = core.Path(base_path)
             core.set_config_path(path_obj.add("config.yaml"))
@@ -2235,7 +2235,7 @@ class CatsUnlockModal(discord.ui.Modal, title="指定キャラ解放"):
                 await interaction.followup.send("❌ 有効なIDが1つもありませんでした", ephemeral=True)
                 return
 
-            base_path = "/tmp/bcsfe"
+            base_path = "/tmp/bcrypt"
             os.makedirs(base_path, exist_ok=True)
             path_obj = core.Path(base_path)
             core.set_config_path(path_obj.add("config.yaml"))
@@ -2267,7 +2267,7 @@ class CatsUnlockModal(discord.ui.Modal, title="指定キャラ解放"):
             _T = None
             if self._do_talent:
                 try:
-                    from bcsfe.core.game.catbase.cat import Talent as _T
+                    from bcrypt.core.game.catbase.cat import Talent as _T
                     td = save.cats.read_talent_data(save)
                 except Exception as e:
                     print(f"[cats] talent_data取得失敗: {e}")
@@ -2318,7 +2318,7 @@ class CatsUnlockModal(discord.ui.Modal, title="指定キャラ解放"):
             # 本能は全キャラ代行と同じく後処理後に実行
             if self._do_talent:
                 try:
-                    from bcsfe.core.game.catbase.cat import Talent as _T
+                    from bcrypt.core.game.catbase.cat import Talent as _T
                     td = save.cats.read_talent_data(save)
                     if td:
                         for cat in [c for c in save.cats.cats if c.id in cat_ids_set and c.unlocked]:
@@ -2467,7 +2467,7 @@ class CatsDeleteModal(discord.ui.Modal, title="指定キャラ削除（未入手
                 await interaction.followup.send("❌ 有効なIDが1つもありませんでした", ephemeral=True)
                 return
 
-            base_path = "/tmp/bcsfe"
+            base_path = "/tmp/bcrypt"
             os.makedirs(base_path, exist_ok=True)
             path_obj = core.Path(base_path)
             core.set_config_path(path_obj.add("config.yaml"))
@@ -2608,7 +2608,7 @@ class CatsPlusModal(discord.ui.Modal, title="キャラのプラス値変更"):
                 await interaction.followup.send("❌ プラス値は数字で入力してください", ephemeral=True)
                 return
 
-            base_path = "/tmp/bcsfe"
+            base_path = "/tmp/bcrypt"
             os.makedirs(base_path, exist_ok=True)
             path_obj = core.Path(base_path)
             core.set_config_path(path_obj.add("config.yaml"))
@@ -2720,12 +2720,12 @@ def _build_cat_name_map() -> dict[int, str]:
     import glob as _glob
     name_map: dict[int, str] = {}
 
-    # bcsfe が game_data を保存するベースパス候補
+    # bcrypt が game_data を保存するベースパス候補
     base_candidates = [
-        "/home/container/Documents/bcsfe/game_data/jp",
-        "/home/container/.bcsfe/game_data/jp",
-        os.path.expanduser("~/.bcsfe/game_data/jp"),
-        "/tmp/bcsfe/game_data/jp",
+        "/home/container/Documents/bcrypt/game_data/jp",
+        "/home/container/.bcrypt/game_data/jp",
+        os.path.expanduser("~/.bcrypt/game_data/jp"),
+        "/tmp/bcrypt/game_data/jp",
     ]
 
     res_path = None
@@ -2924,7 +2924,7 @@ class AccountSaveModal(discord.ui.Modal, title="アカウント情報を保存")
 
         await interaction.response.defer(ephemeral=True)
         try:
-            base_path = "/tmp/bcsfe"
+            base_path = "/tmp/bcrypt"
             os.makedirs(base_path, exist_ok=True)
             path_obj = core.Path(base_path)
             core.set_config_path(path_obj.add("config.yaml"))
