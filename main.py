@@ -6,22 +6,19 @@ import os
 import json
 from pathlib import Path
 
-# ========== ✅ BCSFE-Python を正しく読み込む設定 ==========
-# 実行ファイルと同じ場所にある BCSFE-Python-main/src を指定
+# ========== ✅ パス修正：bcsfeが直接ルートにある場合 ==========
 BASE_DIR = Path(__file__).parent
-BCSFE_PATH = BASE_DIR / "BCSFE-Python-main" / "src"
+# bcsfeフォルダが直接存在するので、ルートを検索パスに追加
+sys.path.insert(0, str(BASE_DIR))
 
-# 検索パスに追加
-sys.path.insert(0, str(BCSFE_PATH))
-
-# ✅ ここからインポート（重複を削除）
+# ✅ インポート
 from bcsfe import core
 # =========================================================
 
-# 🔐 トークンは環境変数から取得（FadeHost推奨）
+# 🔐 トークンは環境変数から取得
 TOKEN = os.getenv("DISCORD_TOKEN")
 
-# --- 以降のBotコードをここに記述 ---
+# --- 以降のコードはそのまま ---
 
 ALLOWED_USERS = [1465368277663350794]
 PANELS_FILE = Path(__file__).parent / "panels.json"
