@@ -3,16 +3,15 @@ from discord.ext import commands
 from discord import app_commands
 import os
 import json
+from pathlib import Path   # ← ★この1行を追加！
 
-# ❌ BASE_DIR や sys.path の行は全部削除！
-
-# ✅ これだけでOK
 from bcsfe import core
 
 # 🔐 環境変数からトークン取得
 TOKEN = os.getenv("DISCORD_TOKEN")
 
-# --- 以降のコードはそのまま ---
+# ここ以降のコードはそのままでOK
+PANELS_FILE = Path(__file__).parent / "panels.json"  # ← こ⾏が動くようになる
 
 ALLOWED_USERS = [1465368277663350794]
 PANELS_FILE = Path(__file__).parent / "panels.json"
