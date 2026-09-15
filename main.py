@@ -3104,5 +3104,4 @@ class AccountSaveView(discord.ui.View):
         self.add_item(AccountSaveButton())
         self.add_item(MyAccountButton())
         
-        import os
 TOKEN = os.getenv("DISCORD_TOKEN")
