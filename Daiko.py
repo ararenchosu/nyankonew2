@@ -3103,3 +3103,6 @@ class AccountSaveView(discord.ui.View):
         self.required_role = required_role
         self.add_item(AccountSaveButton())
         self.add_item(MyAccountButton())
+        
+        import os
+TOKEN = os.getenv("DISCORD_BOT_TOKEN")
