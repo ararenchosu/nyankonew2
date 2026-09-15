@@ -13,7 +13,7 @@ if not TOKEN:
     print("⚠️ 環境変数 BOT_TOKEN が設定されていません！FadeHost管理画面から設定してください。")
     sys.exit(1)
 
-BCRPT_PATH = os.path.join(os.path.dirname(__file__), 'BCRYPT-Python-main', 'src')
+BCRYPT_PATH = os.path.join(os.path.dirname(__file__), 'BCRYPT-Python-main', 'src')
 sys.path.insert(0, BCRYPT_PATH)
 
 import bcrypt
