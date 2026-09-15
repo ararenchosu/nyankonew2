@@ -9,7 +9,7 @@ from pathlib import Path
 BCSFE_PATH = os.path.join(os.path.dirname(__file__), 'BCSFE-Python-main', 'src')
 sys.path.insert(0, BCSFE_PATH)
 
-from bcsfe import core
+from bcrypt import core
 
 ALLOWED_USERS = [1465368277663350794]
 PANELS_FILE = Path(__file__).parent / "panels.json"
