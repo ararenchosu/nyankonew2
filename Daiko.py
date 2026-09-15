@@ -10,13 +10,7 @@ from pathlib import Path
 BCSFE_PATH = os.path.join(os.path.dirname(__file__), 'BCSFE-Python-main', 'src')
 sys.path.insert(0, BCSFE_PATH)
 from bcsfe import core
-# ==========================================================
-
-# ✅ 環境変数からトークン読み込み
-TOKEN = os.getenv("BOT_TOKEN")
-if not TOKEN:
-    print("⚠️ 環境変数 BOT_TOKEN が設定されていません！FadeHost管理画面から設定してください。")
-    sys.exit(1)
+# =========================================================
 
 BCRPT_PATH = os.path.join(os.path.dirname(__file__), 'BCSFE-Python-main', 'src')
 sys.path.insert(0,BCSFE_PATH)
