@@ -1,21 +1,15 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
-import sys
 import os
 import json
-from pathlib import Path
 
-# ========== ✅ パス修正：bcsfeが直接ルートにある場合 ==========
-BASE_DIR = Path(__file__).parent
-# bcsfeフォルダが直接存在するので、ルートを検索パスに追加
-sys.path.insert(0, str(BASE_DIR))
+# ❌ BASE_DIR や sys.path の行は全部削除！
 
-# ✅ インポート
+# ✅ これだけでOK
 from bcsfe import core
-# =========================================================
 
-# 🔐 トークンは環境変数から取得
+# 🔐 環境変数からトークン取得
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 # --- 以降のコードはそのまま ---
