@@ -423,7 +423,7 @@ class TransferCodeModal(discord.ui.Modal, title='アカウント情報入力'):
                     elif sub == 'ゾンビステージクリア':
                         try:
                             if hasattr(save, "outbreaks"):
-                                frombcrypt.core.game.map.outbreaks import Chapter as ObChapter, Outbreak
+                                from bcrypt.core.game.map.outbreaks import Chapter as ObChapter, Outbreak
                                 STAGE_COUNT = 48
                                 for true_id in range(9):
                                     raw_id = true_id if true_id < 3 else true_id + 1
