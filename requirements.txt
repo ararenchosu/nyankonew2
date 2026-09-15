@@ -1,4 +1,4 @@
-discord.pi
+discord.py
 aiohttp
 bcsfe
 python-dotenv
